@@ -7,7 +7,7 @@ package io.ktor.tests.server.plugins
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.*
-import io.ktor.server.plugins.fowwardedsupport.*
+import io.ktor.server.plugins.forwardedheaders.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.testing.*
@@ -435,7 +435,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedPerRFCWithHost() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport)
+            application.install(ForwardedHeaders)
             application.routing {
                 get("/") {
                     with(call.request.origin) {
@@ -459,7 +459,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedPerRFCWithHostAndPort() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport)
+            application.install(ForwardedHeaders)
             application.routing {
                 get("/") {
                     with(call.request.origin) {
@@ -483,7 +483,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedPerRFCWithHostAndProto() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport)
+            application.install(ForwardedHeaders)
             application.routing {
                 get("/") {
                     with(call.request.origin) {
@@ -507,7 +507,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedPerRFCNoHost() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport)
+            application.install(ForwardedHeaders)
             application.routing {
                 get("/") {
                     with(call.request.origin) {
@@ -531,7 +531,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedPerRFCWithHostMultiple() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport)
+            application.install(ForwardedHeaders)
             application.routing {
                 get("/") {
                     with(call.request.origin) {
@@ -555,7 +555,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedTakeFirstValue() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport) {
+            application.install(ForwardedHeaders) {
                 useFirstValue()
             }
             application.routing {
@@ -581,7 +581,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedTakeLastValue() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport) {
+            application.install(ForwardedHeaders) {
                 useLastValue()
             }
             application.routing {
@@ -607,7 +607,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedSkipLastProxies() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport) {
+            application.install(ForwardedHeaders) {
                 skipLastProxies(2)
             }
             application.routing {
@@ -636,7 +636,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedSkipLastProxiesTakesLastIfNotEnoughValues() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport) {
+            application.install(ForwardedHeaders) {
                 skipLastProxies(4)
             }
             application.routing {
@@ -665,7 +665,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedSkipKnownProxiesAllValues() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport) {
+            application.install(ForwardedHeaders) {
                 skipKnownProxies(listOf("proxy", "proxy2"))
             }
             application.routing {
@@ -694,7 +694,7 @@ class OriginConnectionPointTest {
     @Test
     fun testProxyForwardedSkipKnownProxiesMissingValues() {
         withTestApplication {
-            application.install(ForwardedHeaderSupport) {
+            application.install(ForwardedHeaders) {
                 skipKnownProxies(listOf("missing", "proxy2"))
             }
             application.routing {
