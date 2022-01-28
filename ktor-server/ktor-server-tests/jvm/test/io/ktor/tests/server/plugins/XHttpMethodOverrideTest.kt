@@ -155,7 +155,7 @@ class XHttpMethodOverrideTest {
         withTestApplication {
             application.install(XHttpMethodOverrideSupport)
 
-            application.install(XForwardedHeaderSupport)
+            application.install(XForwardedHeaders)
 
             application.routing {
                 get("/") {
@@ -185,7 +185,7 @@ class XHttpMethodOverrideTest {
         withTestApplication {
             application.install(XHttpMethodOverrideSupport)
 
-            application.install(XForwardedHeaderSupport)
+            application.install(XForwardedHeaders)
 
             application.routing {
                 get("/") {
@@ -215,7 +215,7 @@ class XHttpMethodOverrideTest {
         withTestApplication {
             application.install(XHttpMethodOverrideSupport)
 
-            application.install(XForwardedHeaderSupport)
+            application.install(XForwardedHeaders)
 
             application.routing {
                 get("/") {
@@ -245,7 +245,7 @@ class XHttpMethodOverrideTest {
         withTestApplication {
             application.install(XHttpMethodOverrideSupport)
 
-            application.install(ForwardedHeaderSupport)
+            application.install(ForwardedHeaders)
 
             application.routing {
                 get("/") {

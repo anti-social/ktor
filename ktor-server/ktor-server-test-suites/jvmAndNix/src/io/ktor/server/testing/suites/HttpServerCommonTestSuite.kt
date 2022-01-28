@@ -310,7 +310,7 @@ abstract class HttpServerCommonTestSuite<TEngine : ApplicationEngine, TConfigura
     @Test
     fun testProxyHeaders() {
         createAndStartServer {
-            application.install(XForwardedHeaderSupport)
+            application.install(XForwardedHeaders)
             get("/") {
                 call.respond(call.url { })
             }

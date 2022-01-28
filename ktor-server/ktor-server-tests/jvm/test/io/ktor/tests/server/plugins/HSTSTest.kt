@@ -55,7 +55,7 @@ class HSTSTest {
 
     @Test
     fun testSubrouteInstall() = withTestApplication {
-        application.install(XForwardedHeaderSupport)
+        application.install(XForwardedHeaders)
         application.routing {
             route("/1") {
                 install(HSTS) {
@@ -161,7 +161,7 @@ class HSTSTest {
     }
 
     private fun Application.testApp(block: HSTS.Configuration.() -> Unit = {}) {
-        install(XForwardedHeaderSupport)
+        install(XForwardedHeaders)
         install(HSTS) {
             maxAgeInSeconds = 10
             includeSubDomains = true

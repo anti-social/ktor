@@ -35,7 +35,7 @@ class HttpsRedirectPluginTest {
     @Test
     fun testRedirectHttps() {
         withTestApplication {
-            application.install(XForwardedHeaderSupport)
+            application.install(XForwardedHeaders)
             application.install(HttpsRedirect)
             application.routing {
                 get("/") {
