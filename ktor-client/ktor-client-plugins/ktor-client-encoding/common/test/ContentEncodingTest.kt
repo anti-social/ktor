@@ -20,6 +20,7 @@ class ContentEncodingTest : ClientLoader() {
             }
         }
 
+        
         test { client ->
             val response = client.get("$TEST_URL/identity").body<String>()
             assertEquals("Compressed response!", response)
@@ -51,6 +52,20 @@ class ContentEncodingTest : ClientLoader() {
         test { client ->
             val response = client.get("$TEST_URL/gzip").body<String>()
             assertEquals("Compressed response!", response)
+        }
+    }
+
+    @Test
+    fun testGZipEmpty() = clientTests {
+        config {
+            ContentEncoding {
+                gzip()
+            }
+        }
+
+        test { client ->
+            val response = client.get("$TEST_URL/gzip-empty").body<String>()
+            assertEquals("", response)
         }
     }
 }
